@@ -1,2 +1,8 @@
-
+pygcn/build/*
+pygcn/libtorch/*
+build/*
+pygcn/libtorch/lib/libdnnl.a
+pygcn/libtorch/lib/libtorch_cpu.so
+pygcn/libtorch-shared-with-deps-latest.zip
+*.pyc
 *.pyc
