@@ -8,3 +8,4 @@ pygcn/libtorch-shared-with-deps-latest.zip
 **/build
 **/libtorch
 *.zip
+pygcn/pybind_11_example.cpython-38-darwin.so
