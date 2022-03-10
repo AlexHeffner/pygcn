@@ -37,7 +37,7 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
 parser.add_argument('--fastmode', action='store_true', default=False,
                     help='Validate during training pass.')
 parser.add_argument('--seed', type=int, default=42, help='Random seed.')
-parser.add_argument('--epochs', type=int, default=400,
+parser.add_argument('--epochs', type=int, default=20,
                     help='Number of epochs to train.')
 parser.add_argument('--lr', type=float, default=0.01,
                     help='Initial learning rate.')
@@ -62,9 +62,9 @@ adj, features, labels, idx_train, idx_val, idx_test = load_data()
 # Model and optimizer
 model = GCN(nfeat=features.shape[1],
             nhid1=args.hidden,
-            nhid2=args.hidden,
-            nhid3=args.hidden,
-            nhid4=args.hidden,
+            # nhid2=args.hidden,
+            # nhid3=args.hidden,
+            # nhid4=args.hidden,
             nclass=labels.max().item() + 1,
             dropout=args.dropout)
 optimizer = optim.Adam(model.parameters(),

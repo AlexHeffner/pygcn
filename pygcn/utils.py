@@ -29,13 +29,13 @@ def load_data(path="../data/cora/", dataset="cora"):
     """Load citation network dataset (cora only for now)"""
     # print('Loading {} dataset...'.format(dataset))
     
-    new_dataset = Planetoid(root='/tmp/Cora', name='Cora')
+    # new_dataset = Planetoid(root='/tmp/Cora', name='Cora')
     # print("New dataset: ", new_dataset)
     
     # loader = DataLoader(new_dataset)
     # print("Loader: ", loader)
 
-    data_object = new_dataset[0]
+    # data_object = new_dataset[0]
 
     ###############################
     idx_features_labels = np.genfromtxt("{}{}.content".format(path, dataset),
@@ -74,23 +74,23 @@ def load_data(path="../data/cora/", dataset="cora"):
     idx_test = torch.LongTensor(idx_test)
     ####################################################
 
-    new_dataset = Planetoid(root='/tmp/Cora', name='Cora')
+    # new_dataset = Planetoid(root='/tmp/Cora', name='Cora')
     # print("New dataset: ", new_dataset)
     
     # loader = DataLoader(new_dataset)
     # print("Loader: ", loader)
 
-    data_object = new_dataset[0]
+    # data_object = new_dataset[0]
     # print("Data Object----------------")
     # print(data_object)
     # print("")
 
-    adj2 = sp.coo_matrix((np.ones(data_object.edge_index.shape[0]), (data_object.edge_index[:, 0], data_object.edge_index[:, 1])),
-                    shape=(data_object.y.shape[0], data_object.y.shape[0]),
-                    dtype=np.float32)
-    adj2 = adj2 + adj2.T.multiply(adj2.T > adj2) - adj2.multiply(adj2.T > adj2)
-    adj2 = normalize(adj2 + sp.eye(adj2.shape[0]))
-    adj2 = sparse_mx_to_torch_sparse_tensor(adj2)
+    # adj2 = sp.coo_matrix((np.ones(data_object.edge_index.shape[0]), (data_object.edge_index[:, 0], data_object.edge_index[:, 1])),
+    #                 shape=(data_object.y.shape[0], data_object.y.shape[0]),
+    #                 dtype=np.float32)
+    # adj2 = adj2 + adj2.T.multiply(adj2.T > adj2) - adj2.multiply(adj2.T > adj2)
+    # adj2 = normalize(adj2 + sp.eye(adj2.shape[0]))
+    # adj2 = sparse_mx_to_torch_sparse_tensor(adj2)
 
     # print("----lables----")
     # torch.set_printoptions(threshold=10_000)
@@ -118,7 +118,7 @@ def load_data(path="../data/cora/", dataset="cora"):
     # # print('')
 
     # print("----Featurs----")
-    torch.set_printoptions(threshold=1000000000000000000)
+    # torch.set_printoptions(threshold=1000000000000000000)
     # print(data_object.x)
     # print(features)
     # print("len of each: ",data_object.x.shape, " ", features.shape)
