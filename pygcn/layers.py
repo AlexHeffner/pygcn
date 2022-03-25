@@ -49,9 +49,10 @@ class GraphConvolution(Module):
         output = torch.Tensor(cppanswer)
         # print("cpp time --- %s seconds ---" % (time.time() - start_time))
         
-        # torch.set_printoptions(threshold=1000000000000000000000000000000000000000000000000000)
-        # print(output)
-
+        torch.set_printoptions(threshold=1000000000000000000000000000000000000000000000000000)
+        print(output)
+        exit(0)
+       
         # AB aka phase 1
         # start_time = time.time()
         # support = torch.mm(adj, input)
@@ -62,8 +63,12 @@ class GraphConvolution(Module):
         # exit (0)
 
         # #BC aka phase 2
-        # support = torch.mm(input, self.weight)
-        # output = torch.spmm(adj, support)
+        support = torch.mm(input, self.weight)
+        output = torch.spmm(adj, support)
+        
+        # torch.set_printoptions(threshold=1000000000000000000000000000000000000000000000000000)
+        # print(output)
+        # exit(0)
 
 
         if self.bias is not None:
@@ -95,4 +100,3 @@ class GraphConvolution(Module):
         # print("DONE")
         # print("python time --- %s seconds ---" % (time.time() - start_time))
         # res_tensor = torch.Tensor(res)
-        

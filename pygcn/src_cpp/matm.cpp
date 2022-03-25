@@ -11,23 +11,38 @@ using namespace std;
 //  z x y
 vector<vector<double>> matrix_multi(vector<vector<double>> input, vector<vector<double>> weight, vector<vector<double>> adj){
     vector<vector<double>> support_best;
+    long count1 = 0;
     support_best.resize(input.size(), std::vector<double>(weight[0].size()));
     for (size_t i = 0; i < input.size(); i++){
         for (size_t k = 0; k < weight.size(); k++){
             for (size_t j = 0; j < weight[0].size(); j++){
-                support_best[i][j] += input[i][k] * weight[k][j];
+                if (input[i][k] != 0 && weight[k][j] != 0){
+                    support_best[i][j] += input[i][k] * weight[k][j];
+                }else{
+                    count1 += 1;
+                }
             }
         }
     }
+    long count2 = 0;
     vector<vector<double>> output_best;
     output_best.resize(adj.size(), std::vector<double>(support_best[0].size()));
     for (size_t z = 0; z < support_best.size(); z++){
         for (size_t x = 0; x < adj.size(); x++){
             for (size_t y = 0; y < support_best[0].size(); y++){
-                output_best[x][y] += adj[x][z] * support_best[z][y];
+                if (adj[x][z] != 0 && support_best[z][y] != 0){
+                    output_best[x][y] += adj[x][z] * support_best[z][y];
+                }else {
+                    count2 += 1;
+                }
+                
             }
         }
     }
+    string filenamezeros("zeros_counts.csv");
+    ofstream file_out_zeros;
+    file_out_zeros.open(filenamezeros, std::ios_base::app);
+    file_out_zeros  << count1 << ", " << count2 << endl;
     py::cast(output_best);
     return output_best;
 
