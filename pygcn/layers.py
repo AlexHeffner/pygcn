@@ -44,14 +44,18 @@ class GraphConvolution(Module):
 
         # pip3 install -e . -vvv   
         # start_time = time.time()
-        adjnew = adj.to_dense()
-        cppanswer = pbe.matrix_multi_cpp(input.tolist(), self.weight.tolist() , adjnew.tolist())
-        output = torch.Tensor(cppanswer)
+        # adjnew = adj.to_dense()
+        # cppanswer = pbe.matrix_multi_cpp(input.tolist(), self.weight.tolist() , adjnew.tolist())
+        # output = torch.Tensor(cppanswer)
+        # # print("output", output.size())
+        # ident = torch.eye(len(output[0]),len(output[0]))
+        # output =torch.mm(output, ident)
+        # exit(0)
         # print("cpp time --- %s seconds ---" % (time.time() - start_time))
         
-        torch.set_printoptions(threshold=1000000000000000000000000000000000000000000000000000)
-        print(output)
-        exit(0)
+        # torch.set_printoptions(threshold=1000000000000000000000000000000000000000000000000000)
+        # print(output)
+        # exit(0)
        
         # AB aka phase 1
         # start_time = time.time()
@@ -69,7 +73,6 @@ class GraphConvolution(Module):
         # torch.set_printoptions(threshold=1000000000000000000000000000000000000000000000000000)
         # print(output)
         # exit(0)
-
 
         if self.bias is not None:
             return output + self.bias
